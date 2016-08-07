@@ -1,22 +1,12 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CroogoAclInitialMigration extends AbstractMigration
+class AclInitialMigration extends AbstractMigration
 {
-
-    public $autoId = false;
-
     public function up()
     {
-        $table = $this->table('acos');
-        $table
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 10,
-                'null' => false,
-            ])
-            ->addPrimaryKey(['id'])
+
+        $this->table('acos')
             ->addColumn('parent_id', 'integer', [
                 'default' => null,
                 'limit' => 10,
@@ -49,15 +39,7 @@ class CroogoAclInitialMigration extends AbstractMigration
             ])
             ->create();
 
-        $table = $this->table('aros');
-        $table
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 10,
-                'null' => false,
-            ])
-            ->addPrimaryKey(['id'])
+        $this->table('aros')
             ->addColumn('parent_id', 'integer', [
                 'default' => null,
                 'limit' => 10,
@@ -90,15 +72,7 @@ class CroogoAclInitialMigration extends AbstractMigration
             ])
             ->create();
 
-        $table = $this->table('aros_acos');
-        $table
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 10,
-                'null' => false,
-            ])
-            ->addPrimaryKey(['id'])
+        $this->table('aros_acos')
             ->addColumn('aro_id', 'integer', [
                 'default' => null,
                 'limit' => 10,
@@ -130,7 +104,6 @@ class CroogoAclInitialMigration extends AbstractMigration
                 'null' => false,
             ])
             ->create();
-
     }
 
     public function down()
